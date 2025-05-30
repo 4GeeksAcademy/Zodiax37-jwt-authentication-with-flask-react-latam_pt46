@@ -11,6 +11,10 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 
+from api.routes import api
+from flask_cors import CORS
+
+from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity, get_jwt, create_access_token
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -18,6 +22,16 @@ static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../dist/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
+
+# Allow CORS requests to this API
+# Permitir solo el dominio del frontend
+CORS(app, resources={r"/api/*": {"origins": "https://organic-doodle-gv7xr57x95qhvpjq-3000.app.github.dev"}}, supports_credentials=True)
+    
+app.config['JWT_SECRET_KEY'] = 'mi_super_clave_secreta_123'
+
+jwt = JWTManager(app)
+# app.register_blueprint(api, url_prefix='/api')
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
@@ -57,6 +71,8 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 # any other endpoint will try to serve it like a static file
+
+
 @app.route('/<path:path>', methods=['GET'])
 def serve_any_other_file(path):
     if not os.path.isfile(os.path.join(static_file_dir, path)):

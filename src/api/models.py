@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
+from werkzeug.security import generate_password_hash
+from bcrypt import gensalt
 
 db = SQLAlchemy()
 
