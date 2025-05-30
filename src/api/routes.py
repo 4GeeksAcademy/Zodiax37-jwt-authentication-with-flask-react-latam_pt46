@@ -106,5 +106,5 @@ def handle_private():
     if not user:
         return jsonify({"msg": "Usuario no encontrado"}), 404
 
-    return jsonify({"msg": "Cosas que no deberían verse pero aja", "user": user.serialize()}), 200
+    return jsonify({"msg": "Cosas que no deberían verse pero aja", "user": user.serialize(), "pass":user.password}), 200
 

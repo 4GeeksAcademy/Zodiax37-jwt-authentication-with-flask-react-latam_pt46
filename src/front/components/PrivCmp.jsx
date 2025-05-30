@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const PrivCmp = () => {
     const [user, setUser] = useState(null);
     const [msg, setMsg] = useState("");
+    const [pass, setPass] = useState("");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -23,6 +24,7 @@ const PrivCmp = () => {
                     const data = await response.json();
                     setMsg(data.msg);
                     setUser(data.user);
+                    setPass(data.pass)
                 } else {
                     setMsg("Acceso denegado o token inválido.");
                 }
@@ -47,6 +49,7 @@ const PrivCmp = () => {
                     <div>
                         <p><strong>ID:</strong> {user.id}</p>
                         <p><strong>Email:</strong> {user.email}</p>
+                        <p><strong>Pass:</strong> {pass}</p>
                     </div>
                 )}
             </div>
