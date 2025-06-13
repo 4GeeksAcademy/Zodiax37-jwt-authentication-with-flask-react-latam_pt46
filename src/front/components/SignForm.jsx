@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function SignForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -60,7 +61,10 @@ function SignForm() {
                                     Sign
                                 </button>
                             </form>
-                            
+
+                            <div className="mt-5 text-center">
+                                ¿Ya te te registraste? <Link to="/login">Inicia sesión aquí</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

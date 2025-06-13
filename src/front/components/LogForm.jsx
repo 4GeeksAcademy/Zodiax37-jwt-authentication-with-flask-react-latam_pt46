@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const LogForm = () => {
     const [email, setEmail] = useState("");
@@ -83,7 +83,11 @@ const LogForm = () => {
                                     Login
                                 </button>
                             </form>
-                           
+
+
+                            <div className="mt-5 text-center">
+                                ¿No te has registrado? <Link to="/sign">Registrate aquí</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
